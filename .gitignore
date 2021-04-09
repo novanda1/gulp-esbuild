@@ -1,0 +1,21 @@
+# OS/Editor files
+.DS_Store
+# .vscode/
+
+# Static CSS
+/static
+
+# Node modules
+node_modules
+
+# Dist
+dist
+
+gulp.cmd
+
+tmpnodejsnpm-cache
+report.*.json
+yarn-error.log
+yarn.lock
+plugin.php
+src/init.php

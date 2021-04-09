@@ -1,0 +1,30 @@
+@import "../common";
+
+.gutenberg {
+  // This may need to be .wp-block in WordPress 5+
+
+  .container {
+    border: 1px solid $gray;
+    padding: 1rem;
+  }
+
+  .button-container {
+    text-align: center;
+    padding: 22% 0;
+    background: $white;
+    border: 1px solid $gray;
+    border-radius: 2px;
+    margin: 0 0 1.2rem 0;
+  }
+
+  .heading {
+    font-size: 1.5rem;
+    font-weight: 600;
+  }
+
+  .image {
+    height: 15.7rem;
+    width: 100%;
+    object-fit: cover;
+  }
+}

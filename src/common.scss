@@ -15,3 +15,7 @@ $white: #f4f4f4;
 $gray: #dedede;
 $green: #bada55;
 $red: orangered;
+
+body {
+    @apply erb-bg-blend-color-dodge
+}

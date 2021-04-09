@@ -37,7 +37,7 @@ registerBlockType('card-block/main', {
                             src={attributes.imageUrl}
                             alt={attributes.imageAlt}
                             onClick={openEvent}
-                            className="image px-4"
+                            className="image px-4 py-10"
                             role="presentation"
                         />
                         <button onClick={() => setAttributes({ imageUrl: '' })}>dele</button>

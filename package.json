@@ -10,10 +10,10 @@
   "author": "Novanda Ahsan",
   "license": "ISC",
   "devDependencies": {
-    "@babel/core": "^7.13.15",
-    "@babel/preset-env": "^7.13.15",
+    "@babel/core": "^7.11.0",
+    "@babel/preset-env": "^7.11.0",
     "@babel/preset-react": "^7.13.13",
-    "autoprefixer": "^10.2.5",
+    "autoprefixer": "^10.2.1",
     "cross-env": "^7.0.3",
     "esbuild": "^0.11.6",
     "gulp": "^4.0.2",
@@ -21,16 +21,18 @@
     "gulp-babel": "^8.0.0",
     "gulp-clean-css": "^4.3.0",
     "gulp-concat": "^2.6.1",
-    "gulp-esbuild": "^0.7.1",
+    "gulp-esbuild": "^0.7.2",
     "gulp-postcss": "^9.0.0",
-    "postcss": "^8.2.4",
-    "stylelint": "^13.12.0",
-    "stylelint-config-standard": "^21.0.0",
-    "tailwindcss": "^2.1.1"
-  },
-  "dependencies": {
-    "esbuild-plugin-sass": "^0.4.1",
     "gulp-sass": "^4.1.0",
-    "node-sass": "^5.0.0"
-  }
+    "gulp-uglify": "^3.0.2",
+    "gulp-watch": "^5.0.1",
+    "node-sass": "^4.14.1",
+    "postcss": "^8.2.4",
+    "stylelint": "^13.8.0",
+    "stylelint-config-standard": "^20.0.0",
+    "stylelint-csstree-validator": "^1.9.0",
+    "stylelint-scss": "^3.18.0",
+    "tailwindcss": "^2.0.2"
+  },
+  "dependencies": {}
 }

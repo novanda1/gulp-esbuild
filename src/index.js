@@ -1,6 +1,7 @@
-require('./block/block')
-const howtocon = (text) => {
-    console.log(text)
-}
+require("./block/block");
 
-howtocon("hellow")
+const logger = (text) => {
+  console.log(text);
+};
+
+logger("from parent");

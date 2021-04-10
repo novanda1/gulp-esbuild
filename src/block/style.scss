@@ -1,15 +1,5 @@
-/**
- * #.# Styles
- *
- * CSS for both Frontend+Backend.
- */
-@import "../common.scss";
+@import "../main";
 
-.wp-block-cgb-block-gutenberg {
-  background: $red;
-  border: 0.2rem solid $black;
-  color: $black;
-  margin: 0 auto;
-  max-width: 740px;
-  padding: 2rem;
+.gutenberg {
+  @apply erb-container erb-max-w-7xl;
 }

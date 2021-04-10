@@ -1,7 +1,7 @@
-require("./block/block");
+require('./block/block')
 
 const logger = (text) => {
-  console.log(text);
-};
+  console.log(text)
+}
 
-logger("from parent");
+logger('from parent')

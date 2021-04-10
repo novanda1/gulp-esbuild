@@ -1,13 +1,13 @@
 module.exports = {
   purge: {
     enabled: true,
-    content: ["./src/**/*.js", "./src/**/*.html"],
+    content: ['./src/**/*.js', './src/**/*.html'],
     options: {
-      keyframes: true,
-    },
+      keyframes: true
+    }
   },
-  prefix: "erb-",
+  prefix: 'erb-',
   corePlugins: {
-    preflight: false,
-  },
-};
+    preflight: false
+  }
+}

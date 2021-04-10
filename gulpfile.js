@@ -34,9 +34,12 @@ const styles = [
     },
 ];
 
-const _styles = (cb) => {
+const _styles = () => {
     const task = styles.map((element) =>
         src(element.src)
+            .pipe(
+                sass({ outputStyle: "compressed" }).on("error", sass.logError)
+            )
             .pipe(postcss())
             .pipe(
                 autoprefixer({
@@ -52,7 +55,7 @@ const _styles = (cb) => {
     return merge(task);
 };
 
-function _build(cb) {
+function _build() {
     return src("./src/index.js")
         .pipe(
             babel({
@@ -61,12 +64,11 @@ function _build(cb) {
         )
         .pipe(gulpEsbuild)
         .pipe(dest("./dist"));
-    cb();
 }
 
 function watchTask() {
     watch("./src/**/*.js", _build);
-    watch("./src/**/*.editor[ca]ss", _styles);
+    watch("./src/**/*.s[ca]ss", _styles);
 }
 
 exports.default = series(_build, _styles, watchTask);

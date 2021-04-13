@@ -14,7 +14,7 @@ const autoprefixer = require('gulp-autoprefixer')
 
 sass.compiler = require('node-sass')
 
-const gulpEsbuild = createGulpEsbuild({
+const beScriptEsBuild = createGulpEsbuild({
   minify: __prod__,
   outfile: 'blocks.build.js',
   bundle: true,
@@ -23,20 +23,40 @@ const gulpEsbuild = createGulpEsbuild({
   }
 })
 
+const feScriptEsBuild = createGulpEsbuild({
+  minify: __prod__,
+  outfile: 'blocks.build.frontend.js',
+  bundle: true,
+  loader: {
+    '.js': 'jsx'
+  }
+})
+
+const scripts = [
+  {
+    src: './src/index.js',
+    esbuild: beScriptEsBuild
+  },
+  {
+    src: './src/**/frontend.js',
+    esbuild: feScriptEsBuild
+  }
+]
+
 const styles = [
   {
     src: './src/**/editor.s[ca]ss',
-    distName: 'blocks.editor.css'
+    distName: 'blocks.editor.build.css'
   },
   {
     src: './src/**/style.s[ca]ss',
-    distName: 'blocks.style.css'
+    distName: 'blocks.style.build.css'
   }
 ]
 
 const _styles = () => {
-  const task = styles.map((element) =>
-    src(element.src)
+  const task = styles.map((style) =>
+    src(style.src)
       .pipe(
         sass({ outputStyle: 'compressed' }).on('error', sass.logError)
       )
@@ -48,7 +68,7 @@ const _styles = () => {
         })
       )
       .pipe(__prod__ ? cleanCSS({ compatibility: 'ie8' }) : noop())
-      .pipe(concat(element.distName))
+      .pipe(concat(style.distName))
       .pipe(dest('./dist'))
   )
 
@@ -56,19 +76,29 @@ const _styles = () => {
 }
 
 function _build() {
-  return src('./src/index.js')
-    .pipe(
-      babel({
-        presets: ['@babel/preset-env', '@babel/preset-react']
-      })
-    )
-    .pipe(gulpEsbuild)
-    .pipe(dest('./dist'))
+  const task = scripts.map(script =>
+    src(script.src)
+      .pipe(babel({
+        presets: ['@babel/preset-env',
+          [
+            '@babel/preset-react',
+            {
+              development: !__prod__
+            }
+          ]
+        ],
+      }))
+      .pipe(script.esbuild)
+      .pipe(dest('./dist'))
+  )
+
+  return merge(task)
 }
 
-function watchTask() {
-  watch('./src/**/*.js', _build)
+function watchTask(cb) {
+  watch('./src/**/*.(js|jsx)', _build)
   watch('./src/**/*.s[ca]ss', _styles)
+  cb()
 }
 
 exports.default = series(_build, _styles, watchTask)
